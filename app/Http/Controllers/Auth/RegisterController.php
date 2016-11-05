@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class RegisterController extends Controller
    *
    * @var string
    */
-  protected $redirectTo = '/home';
+  protected $redirectTo = '/panel';
 
   /**
    * Create a new controller instance.

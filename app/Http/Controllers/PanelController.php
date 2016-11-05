@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\SendConfirmationEmail;
+use App\User;
 
-class HomeController extends Controller
+class PanelController extends Controller
 {
   /**
    * Create a new controller instance.
@@ -21,8 +23,12 @@ class HomeController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
+    $user = $request->user();
+    $job = (new SendConfirmationEmail($user))->delay(60);
+    $this->dispatch($job);
+
     return view('home');
   }
 }

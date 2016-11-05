@@ -24,6 +24,17 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token',
+    'password', 'remember_token'
   ];
+
+  /**
+   * Проверка значения поля confirmed (подтвержденный e-mail) у пользователя
+   *
+   * Вернёт true, если пользователь не подтвердил e-mail (т.е. confirmed = false или 0)
+   *
+   * @return boolean
+   */
+  public function NotActive() {
+    return ($this->confirmed != true) ? true : false;
+  }
 }
