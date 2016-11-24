@@ -12,7 +12,7 @@ return [
   | any other location as required by the application or its packages.
   */
 
-  'name' => 'Shop',
+  'name' => 'Laravel Shop',
 
   /*
   |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
   |
   */
 
-  'url' => env('APP_URL', 'http://localhost'),
+  'url' => env('APP_URL', 'http://laravel-shop'),
 
   /*
   |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
   |
   */
 
-  'timezone' => 'UTC+3',
+  'timezone' => 'Europe/Moscow',
 
   /*
   |--------------------------------------------------------------------------
@@ -120,7 +120,7 @@ return [
   |
   */
 
-  'log' => env('APP_LOG', 'single'),
+  'log' => env('APP_LOG', 'daily'),
 
   'log_level' => env('APP_LOG_LEVEL', 'debug'),
 

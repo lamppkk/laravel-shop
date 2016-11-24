@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\User;
 
 use Closure;
 
-class UserActiveOrNot
+class confirmed
 {
   /**
    * Handle an incoming request.
@@ -16,7 +16,9 @@ class UserActiveOrNot
   public function handle($request, Closure $next)
   {
     $user = $request->user();
-    
+    if($user->notConfirmed()) {
+      return redirect('/panel/confirmation');
+    }
     return $next($request);
   }
 }

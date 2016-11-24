@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
 use Illuminate\Http\Request;
-use App\Jobs\SendConfirmationEmail;
-use App\User;
+use Illuminate\Http\Response;
 
-class PanelController extends Controller
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Jobs\SendConfirmationEmail;
+
+class MainController extends Controller
 {
+
   /**
    * Create a new controller instance.
    *
@@ -15,7 +19,7 @@ class PanelController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth');
+    $this->middleware('confirmed');
   }
 
   /**
@@ -25,10 +29,6 @@ class PanelController extends Controller
    */
   public function index(Request $request)
   {
-    $user = $request->user();
-    $job = (new SendConfirmationEmail($user))->delay(60);
-    $this->dispatch($job);
-
     return view('home');
   }
 }

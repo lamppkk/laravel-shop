@@ -11,10 +11,35 @@
 |
 */
 
+
+
+//////////////////////////////////////////////
+// ГЛАВНАЯ СТРАНИЦА
+//////////////////////////////////////////////
+
 Route::get('/', function () {
   return view('welcome');
 });
 
+
+
+//////////////////////////////////////////////
+// РЕГИСТРАЦИЯ, ВХОД, ВОССТАНОВЛЕНИЕ ПАРОЛЯ
+//////////////////////////////////////////////
+
 Auth::routes();
 
-Route::get('/panel', 'HomeController@index');
+
+
+//////////////////////////////////////////////
+// ПАНЕЛЬ
+//////////////////////////////////////////////
+
+Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => 'auth'], function () {
+  // Главная страница
+  Route::get('/', 'MainController@index');
+  // Подтверждение почты
+  Route::get('/confirmation', 'ConfirmationController@confirmationNotification');
+  Route::post('/confirmation', 'ConfirmationController@confirmationResend');
+  Route::get('/confirmation/user/{id}/token/{token}', 'ConfirmationController@confirmation');
+});
