@@ -15,7 +15,7 @@ class CreateConfirmationsTable extends Migration
   {
     Schema::create('confirmations', function (Blueprint $table) {
       $table->string('email')->unique()->index();
-      $table->foreign('email')->references('email')->on('users');
+      $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
       $table->string('token');
       $table->dateTime('lifetime');
     });

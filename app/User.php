@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -95,13 +96,17 @@ class User extends Authenticatable
 
   /**
    * Таблица с подтверждением почты пользователя
-   *
-   * Связь один к одному с таблицей Confirmations
-   *
-   * @return HasOne
    */
   public function confirmation()
   {
     return $this->hasOne('App\Confirmation', 'email', 'email');
+  }
+
+  /**
+   * Таблица с персональными данными о пользователе
+   */
+  public function user_data()
+  {
+    return $this->hasOne('App\UserData');
   }
 }

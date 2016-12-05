@@ -15,8 +15,8 @@ class CreateUserDataTable extends Migration
   {
     Schema::create('user_data', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('user_id')->unsigned()->unique();
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->string('lastname', 64);
       $table->enum('sex', ['male', 'female'])->default('male');
       $table->string('address');

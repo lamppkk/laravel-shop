@@ -11,13 +11,10 @@ class Confirmation extends Model
   public $primaryKey = 'email';
 
   /**
-   * Таблица с подтверждением почты пользователя
-   *
-   * Связь один к одному с таблицей Confirmations
-   *
-   * @return HasOne
+   * Пользователь, к которому относится запись подтверждения
    */
-  public function user() {
-    return $this->hasOne('App\User', 'email', 'email');
+  public function user()
+  {
+    return $this->belongsTo('App\User', 'email', 'email');
   }
 }
